@@ -104,6 +104,9 @@ def move_snake():
     old_stamp = stamp_list.pop(0)
     snake.clearstamp(old_stamp)
     pos_list.pop(0)
+    global food_stamp, food_pos
+    if snake.pos() in food_pos:
+        food_ind= food_pos.index(snake.pos())
 
     new_pos = snake.pos()
     new_x_pos = new_pos[0]
@@ -127,8 +130,18 @@ def move_snake():
 move_snake()
 
 
-         
-    
+turtle.register_shape('trash.gif')
+
+food= turtle.clone()
+food.shape('trash.gif')
+
+food_pos= [(100,100), (-100,100), (-100,-100), (100,-100)]
+food_stamps = []
+food.hideturtle()
+for this_food_pos in food_pos:
+    food.goto(this_food_pos)    
+    new_food=food.stamp()
+    food_stamps.append(new_food)
     
     
 
