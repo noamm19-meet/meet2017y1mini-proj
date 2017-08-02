@@ -81,17 +81,17 @@ turtle.listen()
 def make_food():
     min_x= -int(SIZE_X/2/SQUARE_SIZE)+1
     max_x= int(SIZE_X/2/SQUARE_SIZE)-1
-    min_y=-int(SIZE_Y/2/SQUARE_SIZE)+1
+    min_y= -int(SIZE_Y/2/SQUARE_SIZE)+1
     max_y= int(SIZE_Y/2/SQUARE_SIZE)-1
     
-    food_x= random.randint(min_x,max_x)*SQUARE_SIZE
-    food_y= random.randint(min_y,max_y)*SQUARE_SIZE
-##    food_x_y= (food_x , food_y)
-##    for random_food in (food_x , food_y)  :
-##        food.goto(random_x_y)
-##        new_random= food.stamp()
-##        food_stamp.append(new_random)
-            
+    food_x = random.randint(min_x,max_x)*SQUARE_SIZE
+    food_y = random.randint(min_y,max_y)*SQUARE_SIZE
+   
+    food.goto(food_x , food_y)
+    food_pos.append(food.pos())
+    random_food= food.stamp()
+    food_stamps.append(random_food)  
+                
 def move_snake():
     my_pos = snake.pos()
     x_pos = my_pos[0]
@@ -122,14 +122,15 @@ def move_snake():
     if snake.pos() in food_pos:
         food_ind= food_pos.index(snake.pos())
         food.clearstamp(food_stamps[food_ind])
-
+        
         food_pos.pop(food_ind)
         food_stamps.pop(food_ind)
-        
+        make_food()
 
     new_pos = snake.pos()
     new_x_pos = new_pos[0]
     new_y_pos = new_pos[1]
+##    make_food()
 
     if new_x_pos >= RIGHT_EDGE:
         print('GAME OVER!')
@@ -161,10 +162,8 @@ for this_food_pos in food_pos:
     
 
 move_snake()
+ 
+    
 
-
-    
-    
-    
     
     
