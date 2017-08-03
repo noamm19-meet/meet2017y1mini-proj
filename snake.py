@@ -18,6 +18,10 @@ stamp_list=[]
 food_list= []
 food_stamps=[]
 food_pos = []
+color_list = ["blue" , "green" , "white" ]
+s= "blue"
+##1= "green"
+##2= "white"
 
 snake= turtle.clone()
 snake.shape('square')
@@ -55,23 +59,23 @@ LEFT_EDGE = -400
 def up():
     global direction
     direction=UP 
-    print('you pressed up')
+##    print('you pressed up')
 
 def left():
     global direction
     direction=LEFT
-    print('you pressed left')
+##    print('you pressed left')
 
 def down():
     global direction
     direction=DOWN
-    print('you pressed down')
+##    print('you pressed down')
 
     
 def right():
     global direction
     direction=RIGHT
-    print('you pressed right')
+##    print('you pressed right')
 
 turtle.onkeypress(up , UP_ARROW)
 turtle.onkeypress(left , LEFT_ARROW)
@@ -100,25 +104,23 @@ def move_snake():
 
     if direction==RIGHT:
         snake.goto(x_pos + SQUARE_SIZE, y_pos)
-        print('you moved right')
+##        print('you moved right')
     elif direction==LEFT:
         snake.goto(x_pos - SQUARE_SIZE, y_pos) 
-        print('you moved left')
+##        print('you moved left')
     elif direction==UP:
         snake.goto(x_pos ,SQUARE_SIZE + y_pos)
-        print('you moved up')
+##        print('you moved up')
     else:
          snake.goto(x_pos , y_pos - SQUARE_SIZE)
-         print('you moved down')
+##         print('you moved down')
 
          
     my_pos=snake.pos()
     pos_list.append(my_pos)
     new_stamp=snake.stamp()
     stamp_list.append(new_stamp)
-    old_stamp = stamp_list.pop(0)
-    snake.clearstamp(old_stamp)
-    pos_list.pop(0)
+   
     global food_stamp, food_pos
     if snake.pos() in food_pos:
         food_ind= food_pos.index(snake.pos())
@@ -126,16 +128,27 @@ def move_snake():
         make_food()
         food_pos.pop(food_ind)
         food_stamps.pop(food_ind)
+##        c=0
+##        for i in :
+        new_color= random.randint(0 , 2)
+        snake.color(color_list[new_color])
+##            c= c+1
+##            return c
+    else:
+        old_stamp = stamp_list.pop(0)
+        snake.clearstamp(old_stamp)
+        pos_list.pop(0)
+    
 
-        x_pos= snake.pos()[0]
-        y_pos= snake.pos()[1]
-        x_pos+=SQUARE_SIZE
-        my_pos= (x_pos, y_pos)
-        snake.goto(x_pos, y_pos)
-        pos_list.append(my_pos)
-        new_stamp = snake.stamp()
-        stamp_list.append(new_stamp)
-       
+##        x_pos= snake.pos()[0]
+##        y_pos= snake.pos()[1]
+##        x_pos+=SQUARE_SIZE
+##        my_pos= (x_pos, y_pos)
+##        snake.goto(x_pos, y_pos)
+##        pos_list.append(my_pos)
+##        new_stamp = snake.stamp()
+##        stamp_list.append(new_stamp)
+##       
         
 
     
@@ -178,6 +191,8 @@ food.shape('trash.gif')
 
 move_snake()
 make_food()
+
+turtle.mainloop()
  
     
 
