@@ -18,7 +18,7 @@ stamp_list=[]
 food_list= []
 food_stamps=[]
 food_pos = []
-color_list = ["blue" , "green" , "white" ]
+color_list = ["blue" , "green" , "red"  , "oreng" , "cyan"  , "magenta" , "yellow"  ]
 s= "blue"
 ##1= "green"
 ##2= "white"
@@ -58,23 +58,27 @@ LEFT_EDGE = -400
 
 def up():
     global direction
-    direction=UP 
+    if direction!= DOWN:
+        direction=UP 
 ##    print('you pressed up')
 
 def left():
     global direction
-    direction=LEFT
+    if direction!= RIGHT:
+        direction=LEFT
 ##    print('you pressed left')
 
 def down():
     global direction
-    direction=DOWN
+    if direction!= UP:
+        direction=DOWN
 ##    print('you pressed down')
 
     
 def right():
     global direction
-    direction=RIGHT
+    if direction!= LEFT:
+        direction=RIGHT
 ##    print('you pressed right')
 
 turtle.onkeypress(up , UP_ARROW)
@@ -138,8 +142,9 @@ def move_snake():
         old_stamp = stamp_list.pop(0)
         snake.clearstamp(old_stamp)
         pos_list.pop(0)
-    
-
+################        
+##    if direction==
+################
 ##        x_pos= snake.pos()[0]
 ##        y_pos= snake.pos()[1]
 ##        x_pos+=SQUARE_SIZE
